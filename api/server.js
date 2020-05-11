@@ -55,9 +55,9 @@ server.delete('/:id', validateID, (req,res) =>{
     db('accounts').where({id:req.params.id}).del()
     .then(count =>{
         if(count > 0){
-            db('accounts').where({id:req.params.id})
-                .then(([people]) =>{
-                        res.status(200).json({people});
+            db('accounts')
+                .then(people =>{
+                        res.status(200).json(people);
                 })
                 .catch(err=>{
                     res.status(500).json({error:err});
